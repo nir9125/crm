@@ -34,22 +34,14 @@ exports.signup = async (req, res) => {
         password : bcrypt.hashSync(req.body.password,8),
         userStatus : userStatus
     }
+    console.log(userObjToBeStoredInDB);
     console.log("3");
     /**
      * Insert this new user to the db
      */
     try {
-        try{
-            const userCreated = await User.create(userObjToBeStoredInDB);
-        }
-        catch(err){
-            console.log("5");
-            console.error("Error while creating new user", err);
-            res.status(500).send({
-                message : "some internal error while inserting new user"
-            })
-        }
-    const userCreated = await User.create(userObjToBeStoredInDB);
+        const userCreated = await User.create(userObjToBeStoredInDB);
+    // const userCreated = await User.create(userObjToBeStoredInDB);
 
     console.log("user created ", userCreated);
 
